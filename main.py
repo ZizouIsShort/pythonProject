@@ -1,14 +1,10 @@
-from flask import Flask, jsonify, request
+from flask import Flask,render_template
 
 app = Flask(__name__)
 
-
-@app.route('/hello', methods=['GET'])
-def helloworld():
-    if (request.method == 'GET'):
-        data = "Hello World"
-        return (data)
-
+@app.route("/")
+def login():
+    return render_template('loginpage.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
