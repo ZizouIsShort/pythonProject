@@ -2,6 +2,18 @@
 <html>
     <head>
         <title>StockSim Login</title>
+        <script>
+            function getEmail() {
+                const emailInput = document.getElementById("emailinp");
+                const emailAddress = emailInput.value;
+                console.log("Email entered : ", emailAddress)
+            }
+            function getPassword() {
+                const passInput = document.getElementById("passinp");
+                const passAddress = passInput.value;
+                console.log("Password entered : ", passAddress)
+            }
+        </script>
         <style>
             body{
                 background-color: #4FCFB0;
@@ -92,10 +104,10 @@
         <div class="loginbox">
             <p class="login">Login</p>
             <p class="email">Email ID</p>
-            <input type="email" class="emailbox" placeholder="Enter your Email ID">
+            <input type="email" class="emailbox" placeholder="Enter your Email ID" id="emailinp">
             <p class="password">Password</p>
-            <input type="password" class="passwordbox" placeholder="Enter your Password">
-            <button class="loginbutton">Log In</button>
+            <input type="password" class="passwordbox" placeholder="Enter your Password" id="passinp">
+            <button class="loginbutton" onclick="getEmail(), getPassword()"  >Log In</button>
         </div>
     </body>
 </html>
