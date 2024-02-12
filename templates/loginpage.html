@@ -3,15 +3,24 @@
     <head>
         <title>StockSim Login</title>
         <script>
-            function getEmail() {
-                const emailInput = document.getElementById("emailinp");
-                const emailAddress = emailInput.value;
-                console.log("Email entered : ", emailAddress)
-            }
-            function getPassword() {
-                const passInput = document.getElementById("passinp");
-                const passAddress = passInput.value;
-                console.log("Password entered : ", passAddress)
+            async function sendInputToPython() {
+              const inputValue = document.getElementById("emailinp").value;
+
+
+              const response = await fetch('/process_input', {
+                method: 'POST',
+                  headers : {
+                    'Content-Type' : 'application/json'
+                  },
+                body: JSON.stringify({ input: inputValue }),
+              });
+
+
+              if (response.ok) {
+                console.log("Response from server:", await response.text());
+              } else {
+                console.error("Error sending input:", await response.text());
+              }
             }
         </script>
         <style>
@@ -107,7 +116,7 @@
             <input type="email" class="emailbox" placeholder="Enter your Email ID" id="emailinp">
             <p class="password">Password</p>
             <input type="password" class="passwordbox" placeholder="Enter your Password" id="passinp">
-            <button class="loginbutton" onclick="getEmail(), getPassword()"  >Log In</button>
+            <button id="loginbn" class="loginbutton" onclick="sendInputToPython()">Log In</button>
         </div>
     </body>
 </html>
