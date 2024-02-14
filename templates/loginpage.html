@@ -5,6 +5,7 @@
         <script>
             async function sendInputToPython() {
               const inputValue = document.getElementById("emailinp").value;
+              const inputValue2 = document.getElementById("passinp").value;
 
 
               const response = await fetch('/process_input', {
@@ -12,7 +13,10 @@
                   headers : {
                     'Content-Type' : 'application/json'
                   },
-                body: JSON.stringify({ input: inputValue }),
+                body: JSON.stringify({
+                    username: inputValue,
+                    password: inputValue2
+                }),
               });
 
 

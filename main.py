@@ -10,11 +10,12 @@ def index():
 def process_input():
     try:
         data = request.get_json()
-        user_input = data["input"]
+        user_input = data["username"]
+        user_input2 = data["password"]
         if not user_input:
             raise ValueError("Missing 'input' data in request body")
 
-        print("Users email is :", user_input)
+        print("Users email is :", user_input, "and password is", user_input2)
         response = {"message": "Input received successfully!"}
         return jsonify(response)
 
@@ -22,5 +23,4 @@ def process_input():
         print(f"Error processing input: {e}")
         return jsonify({"error": str(e)}), 400
 
-if __name__ == "__main__":
-    app.run(debug=True)
+

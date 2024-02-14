@@ -6,8 +6,8 @@ mydb = mysql.connector.connect(
     database="testdb"
 )
 mycursor = mydb.cursor()
-sql = "INSERT INTO users (email, password) VALUES (%s %s)"
-val = ("zizouisshort@gmail.com", "zizou005")
+sql = 'INSERT INTO users (UID, email, password) VALUES (%s, "%s", "%s")'
+val = (1, "zizouisshort@gmail.com", "zizou005")
 mycursor.execute(sql, val)
 mydb.commit()
 mycursor.execute("SELECT * FROM users")
