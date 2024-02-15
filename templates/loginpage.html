@@ -21,9 +21,9 @@
 
 
               if (response.ok) {
-                console.log("Response from server:", await response.text());
+                console.log("Response from server:", await response.json());
               } else {
-                console.error("Error sending input:", await response.text());
+                console.error("Error sending input:", await response.json());
               }
             }
         </script>
