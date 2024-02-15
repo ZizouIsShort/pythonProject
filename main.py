@@ -2,9 +2,11 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def index():
     return render_template("loginpage.html")
+
 
 @app.route("/process_input", methods=["POST"])
 def process_input():
@@ -23,4 +25,5 @@ def process_input():
         print(f"Error processing input: {e}")
         return jsonify({"error": str(e)}), 400
 
-
+if __name__ == "__main__":
+    app.run(debug=True)
