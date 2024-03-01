@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import mysql.connector
+import bcrypt
 
 app = Flask(__name__)
 
@@ -12,7 +13,6 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-
 @app.route("/")
 def index():
     return render_template("loginpage.html")
@@ -20,44 +20,36 @@ def index():
 
 @app.route("/process_input", methods=["POST"])
 def process_input():
-    try:
-        data = request.get_json()
-        user_input = data["username"]
-        user_input2 = str(data["password"])
-        if not user_input:
-            raise ValueError("Missing 'input' data in request body")
 
-        mycursor.execute(f"SELECT * FROM users WHERE emailid = '{user_input}'")
-        data = mycursor.fetchall()
+    data = request.get_json()
+    user_input = data["username"]
+    user_input2 = data["password"]
 
-        if len(data) == 0:
-            mycursor.execute(f"INSERT INTO users (emailid, pass) VALUES ('{user_input}', '{user_input2}')")
-            mydb.commit()
+    if not user_input:
+        raise ValueError("Missing 'input' data in request body")
 
-            mycursor.execute(f"SELECT * FROM users WHERE emailid = '{user_input}'")
-            data = mycursor.fetchall()
+    mycursor.execute(f"SELECT pass FROM users WHERE emailid = '{user_input}'")
+    data = mycursor.fetchall()
 
+    if not len(data):
+        pwBinary = user_input2.encode("utf-8")
+        hashed_password = bcrypt.hashpw(pwBinary, bcrypt.gensalt())
+
+        mycursor.execute(f"INSERT INTO users (emailid, pass) VALUES ('{user_input}', '{hashed_password.decode()}')", )
+        print('yes')
+        mydb.commit()
+    else:
+        storedPassword = data[0][0].encode("utf-8")
+        if bcrypt.checkpw(user_input2.encode("utf-8"), storedPassword):
             return jsonify({
-                "status": "success",
-                "message": "New user created"
-            })
-
+                            "status": "success",
+                            "message": "Success"
+                        })
         else:
-            if data[0][2] == user_input2:
-                return jsonify({
-                    "status": "success",
-                    "message": "Success"
-                })
-            else:
                 return jsonify({
                     "status": "failure",
                     "message": "Incorrect Password"
                 })
-
-    except Exception as e:
-        print(f"Error processing input: {e}")
-        return jsonify({"error": str(e)}), 400
-
 
 if __name__ == "__main__":
     app.run(debug=True)
