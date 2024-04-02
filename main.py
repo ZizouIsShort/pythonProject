@@ -21,7 +21,7 @@ def index():
     if "username" in session:
         return render_template("homepage.html")
     else:
-        return render_template("login.html")
+        return render_template("loginpage.html")
 
 
 @app.route("/process_input", methods=["POST"])
