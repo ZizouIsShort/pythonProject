@@ -11,12 +11,12 @@ mydb = mysql.connector.connect(
     host="localhost",
     user="root",
     password="Ziyan@2005",
-    database="testdb"
+    database="world"
 )
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY, emailid VARCHAR(255), pass VARCHAR(255))")
+mycursor.execute("CREATE TABLE IF NOT EXISTS users (id INT UNIQUE AUTO_INCREMENT, emailid VARCHAR(255) PRIMARY KEY, pass VARCHAR(255))")
 mydb.commit()
 
 @app.route("/")
