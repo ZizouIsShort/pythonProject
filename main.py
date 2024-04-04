@@ -48,16 +48,13 @@ def process_input():
         session["username"] = user_input
         return jsonify({"status": "success","message": "New user created"})
 
-
     else:
         storedPassword = data[0][0].encode("utf-8")
         if bcrypt.checkpw(user_input2.encode("utf-8"), storedPassword):
             print('gg')
-            return (redirect(url_for("index")),
-                jsonify({
-                    "status": "success",
-                    "message": "success"
-                }))
+            session.permanent = True
+            session["username"] = user_input
+            return jsonify({"status": "success","message": "success"})
 
         else:
             return jsonify({
