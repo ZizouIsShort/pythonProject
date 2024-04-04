@@ -16,6 +16,9 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
+mycursor.execute("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY, username VARCHAR(255), password VARCHAR(255))")
+mydb.commit()
+
 @app.route("/")
 def index():
     if "username" in session:
