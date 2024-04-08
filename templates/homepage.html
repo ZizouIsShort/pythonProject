@@ -1,16 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>Welcome</title>
     <style>
-        .new {
-            height: 100%;
+        body {
+            background-color: #CBCBCB;
         }
+            .header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 99vw;
+                height: 100px;
+                background-color: black;
+            }
+                .title{
+                    color: white;
+                    padding-left: 20px;
+                    font-size: 25px;
+                    font-family: 'Orbitron', sans-serif;
+                }
+                .accpic{
+                    width: 100px;
+                    height: 50px;
+                }
+            .tbar {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                background-color: black;
+                width: 700px;
+                height: 36px;
+                margin: 0 auto;
+                margin-top: 35px;
+                padding-left: 30px;
+                padding-right: 30px;
+                border-radius: 54px;
+
+            }
+                .prev{
+                    font-size: 15px;
+                    font-weight: bold;
+                    font-family: 'Orbitron', sans-serif;
+                    color: #CCC7C7;
+                }
+                    .prev:hover{
+                        color: white;
+                        transition: color 0.2s ease-in-out;
+                        cursor: pointer;
+                    }
+            .prevpart{
+                display: flex;
+                flex-direction: row;
+                background-color: white;
+            }
+
+
+
     </style>
 </head>
 <body>
-    <div class="new">
-        Hi
+    <div class="header">
+        <p class="title">
+            StockSim
+        </p>
+        <img class="accpic" src="img_1.png">
+    </div>
+    <div class="tbar">
+        <p class="prev">
+            Preview
+        </p>
+        <p class="prev">
+            Trade
+        </p>
+        <p class="prev">
+            Holdings
+        </p>
+    </div>
+    <div class="prevpart">
+        <div class="ovw">
+            <p class="subhead">
+                Overview
+            </p>
+            <div class="ovwcontents">
+                <p class="accval">
+                    Account Value
+                </p>
+                <p class="bal">
+                    $100,000.00
+                </p>
+                <p class="accval">
+                    Todays Change
+                </p>
+                    <p class="tcvalue">
+                        +$0.00
+                    </p>
+                <p class="annret">
+                    Annual Return
+                </p>
+                    <p class="tcvalue">
+                        +$0.00
+                    </p>
+                <p class="accval">
+                    Buying Power
+                </p>
+                    <p class="bp">
+                        $100,000.00
+                    </p>
+                <p class="accval">
+                    Cash
+                </p>
+                    <p class="bp">
+                        $100,000.00
+                    </p>
+            </div>
+        </div>
+        <div class="performance">
+            <p
+        </div>
     </div>
 </body>
 </html>
