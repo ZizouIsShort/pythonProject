@@ -27,6 +27,9 @@
                     width: 100px;
                     height: 50px;
                 }
+                .accpic:hover{
+                    cursor: pointer;
+                }
             .tbar {
                 display: flex;
                 flex-direction: row;
@@ -53,11 +56,172 @@
                         transition: color 0.2s ease-in-out;
                         cursor: pointer;
                     }
-            .prevpart{
+            .pview{
                 display: flex;
                 flex-direction: row;
-                background-color: white;
+                justify-content: space-between;
+                background-color: #CBCBCB;
+                margin-top: 9px;
+                margin-bottom: 30px;
+                margin-left: 0px;
+                padding-left: 75px;
+                padding-right: 75px;
             }
+
+                .ovw{
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #CBCBCB;
+                }
+                    .h1{
+                        font-size: 20px;
+                        font-weight: bold;
+                        font-family: 'Orbitron', sans-serif;
+                        margin-bottom: 0px;
+                        text-shadow: grey -2px 2px;
+                    }
+                    .card1{
+                        display: flex;
+                        flex-direction: column;
+                        background-color: white;
+                        padding: 20px;
+                    }
+                        .inhead{
+                            font-size: 20px;
+                            font-weight: bold;
+                            font-family: 'Orbitron', sans-serif;
+                            margin-bottom: 0px;
+                            margin-top: 0px;
+                        }
+                        .accval{
+                            font-size: 30px;
+                            font-weight: bold;
+                            font-family: 'Orbitron', sans-serif;
+                            margin-top: 0px;
+                            margin-bottom: 10px;
+                        }
+                            .subox{
+                                display: flex;
+                                flex-direction: row;
+                                margin-top: 0px;
+                                margin-bottom: 0px;
+                            }
+                                .tcdiv{
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-right: 20px;
+                                }
+                                    .greenval{
+                                        font-size: 30px;
+                                        font-weight: bold;
+                                        font-family: 'Orbitron', sans-serif;
+                                        color: #66E582;
+                                        margin-top: 0px;
+                                        margin-bottom: 10px;
+                                    }
+                                .annretdiv{
+                                    display: flex;
+                                    flex-direction: column;
+                                }
+                        .saccval{
+                            font-size: 20px;
+                            font-family: 'Orbitron', sans-serif;
+                            margin-top: 0px;
+                            margin-bottom: 10px;
+                        }
+                        .gtime{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            margin-bottom: 10px;
+                        }
+                            .duration{
+                                font-size: 20px;
+                                font-weight: bold;
+                                font-family: 'Orbitron', sans-serif;
+                                margin-bottom: 0px;
+                                margin-top: 0px;
+                            }
+                            .graph{
+                                width: 790px;
+                                height: 229px;
+                            }
+                        .stcnm{
+                            font-size: 15px;
+                            font-family: 'Orbitron', sans-serif;
+                            background-color: black;
+                            border-radius: 54px;
+                            width: 656px;
+                            padding-top: 4px;
+                            padding-bottom: 4px;
+                            color: grey;
+                            margin-bottom: 10px;
+                            padding-left: 14px;
+                            padding-right: 14px;
+                            margin-top: 7px;
+                        }
+                                .drpdwn{
+                                    font-size: 15px;
+                                    font-family: 'Orbitron', sans-serif;
+                                    background-color: black;
+                                    border-radius: 54px;
+                                    padding-top: 4px;
+                                    padding-bottom: 4px;
+                                    color: grey;
+                                    padding-left: 14px;
+                                    padding-right: 14px;
+                                    margin-top: 5px;
+                                }
+                                .drpdwn:hover{
+                                    cursor: pointer;
+                                }
+                                .stcqty{
+                                    font-size: 15px;
+                                    font-family: 'Orbitron', sans-serif;
+                                    background-color: black;
+                                    border-radius: 54px;
+                                    padding-top: 4px;
+                                    padding-bottom: 4px;
+                                    color: grey;
+                                    padding-left: 14px;
+                                    padding-right: 14px;
+                                    margin-top: 5px;
+                                }
+                        .ord{
+                            font-size: 15px;
+                            font-family: 'Orbitron', sans-serif;
+                            background-color: black;
+                            border-radius: 54px;
+                            padding-top: 4px;
+                            padding-bottom: 4px;
+                            color: grey;
+                            padding-left: 14px;
+                            padding-right: 14px;
+                            margin-top: 25px;
+                        }
+                        .ord:hover{
+                            cursor: pointer;
+                            opacity: 75%;
+                            transition: opacity 0.4s;
+                        }
+
+                table {
+                  border-collapse: collapse;
+                  font-size: 15px;
+                    font-family: 'Orbitron', sans-serif;
+                    width: 137%;
+                }
+
+                th, td {
+                  padding: 10px;
+                  text-align: center;
+                  border-bottom: 1px solid #ddd;
+                    background-color: white;
+                }
+
+                th {
+                  background-color: white;
+                }
 
 
 
@@ -81,46 +245,145 @@
             Holdings
         </p>
     </div>
-    <div class="prevpart">
+    <div class="pview">
         <div class="ovw">
-            <p class="subhead">
+            <p class="h1">
                 Overview
             </p>
-            <div class="ovwcontents">
-                <p class="accval">
+            <div class="card1">
+                <p class="inhead">
                     Account Value
                 </p>
-                <p class="bal">
+                <p class="accval">
                     $100,000.00
                 </p>
-                <p class="accval">
-                    Todays Change
-                </p>
-                    <p class="tcvalue">
-                        +$0.00
-                    </p>
-                <p class="annret">
-                    Annual Return
-                </p>
-                    <p class="tcvalue">
-                        +$0.00
-                    </p>
-                <p class="accval">
+                <div class="subox">
+                    <div class="tcdiv">
+                        <p class="inhead">
+                            Todays Change
+                        </p>
+                        <p class="greenval">
+                            $0.00
+                        </p>
+                    </div>
+                    <div class="annretdiv">
+                        <p class="inhead">
+                            Annual Return
+                        </p>
+                        <p class="greenval">
+                            $0.00
+                        </p>
+                    </div>
+                </div>
+                <p class="inhead">
                     Buying Power
                 </p>
-                    <p class="bp">
-                        $100,000.00
-                    </p>
-                <p class="accval">
+                <p class="saccval">
+                    $100,000.00
+                </p>
+                <p class="inhead">
                     Cash
                 </p>
-                    <p class="bp">
-                        $100,000.00
-                    </p>
+                <p class="saccval">
+                    $100,000.00
+                </p>
             </div>
         </div>
-        <div class="performance">
-            <p
+        <div class="ovw">
+            <p class="h1">
+                Performance
+            </p>
+            <div class="card1">
+
+                    <div class="gtime">
+                        <p class="duration">
+                            1D
+                        </p>
+                        <p class="duration">
+                            1M
+                        </p>
+                        <p class="duration">
+                            3M
+                        </p>
+                        <p class="duration">
+                            6M
+                        </p>
+                        <p class="duration">
+                            1Y
+                        </p>
+                    </div>
+
+                <div class="graph">
+                    Graph
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pview">
+        <div class="ovw">
+            <p class="h1">
+                Trade
+            </p>
+            <div class="card1">
+                <div class="inhead">
+                    Symbol/Company Name
+                </div>
+                <input type="text" class="stcnm" placeholder=" Search for Symbol/Company Name">
+                <div class="subox">
+                    <div class="tcdiv">
+                        <p class="inhead">
+                            Action
+                        </p>
+                        <select id="country" class="drpdwn">
+                          <option value=""> Select an Action </option>
+                          <option value="b" class="opt1"> Buy</option>
+                          <option value="s" class="opt2"> Sell</option>
+                        </select>
+                    </div>
+                    <div class="annretdiv">
+                        <p class="inhead">
+                            Quantity
+                        </p>
+                        <input type="number" class="stcqty" placeholder="0">
+                    </div>
+                </div>
+                <button class="ord">
+                    Order
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="pview">
+        <div class="ovw">
+            <p class="h1">
+                Holdings
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Symbol</th>
+                  <th>Description</th>
+                  <th>Current Price</th>
+                  <th>Todays Change</th>
+                    <th>Purchase Price</th>
+                    <th>Quantity</th>
+                    <th>Total Value</th>
+                    <th>Total Gain/Loss</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                  <td>Data 6</td>
+                    <td>Data 7</td>
+                    <td>Data 8</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
     </div>
 </body>
