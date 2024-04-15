@@ -5,6 +5,70 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>Welcome</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const stocks = [
+                {
+                    symb: "AAPL",
+                    desc: "Apple Inc",
+                    cp: 176.55,
+                    tc: "+1.2",
+                    pp: 170,
+                    qty: 2,
+                    tv: 353.1,
+                    gl: "+13.1"
+                },
+                {
+                    symb: "AAPL",
+                    desc: "Apple Inc",
+                    cp: 176.55,
+                    tc: "+1.2",
+                    pp: 170,
+                    qty: 2,
+                    tv: 353.1,
+                    gl: "+13.1"
+                }
+            ];
+            const tablebody = document.querySelector("tbody");
+            stocks.forEach(item => {
+                const row = document.createElement("tr");
+
+                const symbcol = document.createElement("td");
+                symbcol.textContent = item.symb;
+                row.appendChild(symbcol);
+
+                const desccol = document.createElement("td");
+                desccol.textContent = item.desc;
+                row.appendChild(desccol);
+
+                const cpcol = document.createElement("td");
+                cpcol.textContent = item.cp;
+                row.appendChild(cpcol);
+
+                const tccol = document.createElement("td");
+                tccol.textContent = item.tc;
+                row.appendChild(tccol);
+
+                const ppcol = document.createElement("td");
+                ppcol.textContent = item.pp;
+                row.appendChild(ppcol);
+
+                const qtycol = document.createElement("td");
+                qtycol.textContent = item.qty;
+                row.appendChild(qtycol);
+
+                const tvcol = document.createElement("td");
+                tvcol.textContent = item.tv;
+                row.appendChild(tvcol);
+
+                const glcol = document.createElement("td");
+                glcol.textContent = item.gl;
+                row.appendChild(glcol);
+
+                tablebody.appendChild(row);
+            })
+        })
+    </script>
     <style>
         body {
             background-color: #CBCBCB;
@@ -208,15 +272,15 @@
                 table {
                   border-collapse: collapse;
                   font-size: 15px;
-                    font-family: 'Orbitron', sans-serif;
-                    width: 137%;
+                  font-family: 'Orbitron', sans-serif;
+                  width: 137%;
                 }
 
                 th, td {
                   padding: 10px;
                   text-align: center;
                   border-bottom: 1px solid #ddd;
-                    background-color: white;
+                  background-color: white;
                 }
 
                 th {
@@ -359,30 +423,20 @@
                 Holdings
             </p>
             <table>
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>Description</th>
-                  <th>Current Price</th>
-                  <th>Todays Change</th>
-                    <th>Purchase Price</th>
-                    <th>Quantity</th>
-                    <th>Total Value</th>
-                    <th>Total Gain/Loss</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Data 1</td>
-                  <td>Data 2</td>
-                  <td>Data 3</td>
-                  <td>Data 4</td>
-                  <td>Data 5</td>
-                  <td>Data 6</td>
-                    <td>Data 7</td>
-                    <td>Data 8</td>
-                </tr>
-              </tbody>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Description</th>
+                        <th>Current Price</th>
+                        <th>Todays Change</th>
+                        <th>Purchase Price</th>
+                        <th>Quantity</th>
+                        <th>Total Value</th>
+                        <th>Total Gain/Loss</th>
+                    </tr>
+                </thead>
+                <tbody id="tabledata">
+                </tbody>
             </table>
         </div>
     </div>
