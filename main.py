@@ -1,6 +1,13 @@
+from pprint import pprint
+
 from flask import Flask, request, jsonify, render_template, url_for, redirect, session
 import mysql.connector
 import bcrypt
+import requests
+import json
+
+apiKey = '6LAY8ZILRZS28YEI'
+stocksUrl = 'https://www.alphavantage.co'
 
 app = Flask(__name__)
 
@@ -25,6 +32,23 @@ def index():
         return render_template("homepage.html")
     else:
         return render_template("loginpage.html")
+
+@app.route("/trade", methods=["POST"])
+def trade_stock():
+    data = request.get_json()
+    stock = data['stockName']
+    action = data['action']
+    quantity = data['quantity']
+    url = f'{stocksUrl}/query?function=TIME_SERIES_DAILY&symbol={stock}&interval=5min&apikey={apiKey}'
+    r = requests.get(url)
+    data = r.json()
+    print(stock, action, quantity)
+    pprint(data)
+    opval = data['Time Series (Daily)']['2024-04-17']['1. open']
+    print('hi')
+    print(opval)
+    return jsonify({"status": "success", "message": "input received"})
+
 
 
 @app.route("/process_input", methods=["POST"])

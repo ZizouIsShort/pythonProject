@@ -67,6 +67,50 @@
 
                 tablebody.appendChild(row);
             })
+            const tradeButton = document.querySelector("button");
+            tradeButton.addEventListener("click", trade);
+            function trade(){
+                const stkname = document.getElementById("stknm");
+                const act = document.getElementById("action");
+                const qtty = document.getElementById("stkqty");
+
+                const stockName = stkname.value.trim();
+                const action = act.value;
+                const quantity = parseInt(qtty.value);
+
+                if (!stockName || !action || isNaN(quantity) || quantity < 1) {
+                    alert("Please fill in all the fields correctly.");
+                    return;
+                }
+                const tradedata = {
+                    stockName, action, quantity
+                };
+                fetch("/trade", {
+                    method: "POST", headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(tradedata)
+                })
+                    .then(response => {
+                        console.log("Response status:", response.status);
+                        console.log("Response headers:", response.headers.get('Content-Type'));
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Response data:", data);
+                        if (data.success) {
+                        console.log("Stock trade successful:", data);
+                      }
+                        else {
+                          console.error("Stock trade failed:", data.error);
+                          alert("Stock trade failed: " + data.error);
+                        }
+                    })
+                    .catch(error => {
+                      console.error("Error submitting stock trade:", error);
+                      alert("An error occurred while submitting the stock trade. Please try again later.");
+                    });
+            }
         })
     </script>
     <style>
@@ -392,23 +436,23 @@
                 <div class="inhead">
                     Symbol/Company Name
                 </div>
-                <input type="text" class="stcnm" placeholder=" Search for Symbol/Company Name">
+                <input type="text" class="stcnm" id="stknm" placeholder=" Search for Symbol/Company Name">
                 <div class="subox">
                     <div class="tcdiv">
                         <p class="inhead">
                             Action
                         </p>
-                        <select id="country" class="drpdwn">
+                        <select id="action" class="drpdwn">
                           <option value=""> Select an Action </option>
                           <option value="b" class="opt1"> Buy</option>
                           <option value="s" class="opt2"> Sell</option>
                         </select>
                     </div>
                     <div class="annretdiv">
-                        <p class="inhead">
+                        <p class="inhead" >
                             Quantity
                         </p>
-                        <input type="number" class="stcqty" placeholder="0">
+                        <input type="number" class="stcqty" placeholder="0" id="stkqty">
                     </div>
                 </div>
                 <button class="ord">
