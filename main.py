@@ -1,5 +1,4 @@
 from pprint import pprint
-
 from flask import Flask, request, jsonify, render_template, url_for, redirect, session
 import mysql.connector
 import bcrypt
@@ -12,7 +11,6 @@ stocksUrl = 'https://www.alphavantage.co'
 app = Flask(__name__)
 
 app.secret_key = "ZiyansKey"
-
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -44,11 +42,13 @@ def trade_stock():
     data = r.json()
     print(stock, action, quantity)
     pprint(data)
-    opval = data['Time Series (Daily)']['2024-04-17']['1. open']
-    print('hi')
-    print(opval)
+    name = data['Meta Data']['2. Symbol']
+    print(name)
+    date = data['Meta Data']['3. Last Refreshed']
+    print(date)
+    bp = data['Time Series (Daily)'][date]['4. close']
+    print(bp)
     return jsonify({"status": "success", "message": "input received"})
-
 
 
 @app.route("/process_input", methods=["POST"])
