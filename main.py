@@ -36,20 +36,41 @@ def trade_stock():
     data = request.get_json()
     stock = data['stockName']
     action = data['action']
-    quantity = data['quantity']
+    quantity = float(data['quantity'])
     url = f'{stocksUrl}/query?function=TIME_SERIES_DAILY&symbol={stock}&interval=5min&apikey={apiKey}'
     r = requests.get(url)
     data = r.json()
-    print(stock, action, quantity)
-    pprint(data)
     name = data['Meta Data']['2. Symbol']
-    print(name)
     date = data['Meta Data']['3. Last Refreshed']
-    print(date)
-    bp = data['Time Series (Daily)'][date]['4. close']
-    print(bp)
-    return jsonify({"status": "success", "message": "input received"})
+    p = float(data['Time Series (Daily)'][date]['4. close'])
+    # data is already there
+    total = p * quantity
+    print(p)
+    if action == 'b':
+        print(2)
+        mycursor.execute(f"SELECT stknm FROM trades WHERE stknm = '{stock}' AND bp = '{p}'")
+        data = mycursor.fetchall()
+        user_input = session.get('username')
+        print(4)
+        if not(len(data)):
+            mycursor.execute(f"INSERT INTO trades (fkey ,stknm, pd, bp, bqty, btotal) VALUES ('{user_input}', '{stock}', '{date}', '{p}', {int(quantity)}, '{total}')")
+            mydb.commit()
+            print(3)
+        else:
+            print('Already exists')
 
+        return jsonify({"status": "success", "message": "input received and trade executed"})
+
+    elif action == 's':
+        mycursor.execute(f"SELECT stknm FROM trades WHERE stknm = '{stock}'")
+        data = mycursor.fetchall()
+        if not(len(data)):
+            print('Doesnt exists')
+        else:
+            mycursor.execute(f"INSERT INTO trades (sd, sp, sqty, stotal) VALUES ('{date}', '{p}', '{quantity}', '{total}'")
+            mydb.commit()
+
+        return jsonify({"status": "success", "message": "input received and trade executed"})
 
 @app.route("/process_input", methods=["POST"])
 def process_input():
